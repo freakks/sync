@@ -1,0 +1,14 @@
+appId: com.freaks.steamsync
+productName: SteamSync
+copyright: "SteamSync by Freaks"
+directories:
+  output: dist
+  buildResources: resources
+files:
+  - out/**/*
+  - package.json
+win:
+  target:
+    - target: portable
+      arch:
+        - x64
