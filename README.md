@@ -18,7 +18,7 @@
 
 ### Готовая сборка
 
-Готовая portable-версия (`SteamSync.exe`) доступна в разделе [Releases](https://github.com/Freaks/SteamSync/releases).
+Готовая portable-версия (`SteamSync.exe`) доступна в разделе [Releases](https://github.com/Freaks/sync/releases).
 
 ---
 
