@@ -24,6 +24,29 @@
 
 Готовая portable-версия (`SteamSync.exe`) доступна в разделе [Releases](https://github.com/freakks/sync/releases).
 
+### Сборка из исходников
+
+**Требования:**
+- [Node.js](https://nodejs.org/) 18+
+- npm 9+
+
+```bash
+# 1. Клонируем репозиторий
+git clone https://github.com/freakks/sync.git
+cd sync
+
+# 2. Устанавливаем зависимости
+npm install
+
+# 3. Режим разработки (горячая перезагрузка)
+npm run dev
+
+# 4. Собираем portable .exe
+npm run release
+```
+
+После `npm run release` готовый файл `SteamSync 1.0.1.exe` появится в папке `dist/`.
+
 ---
 
 ## Как пользоваться
