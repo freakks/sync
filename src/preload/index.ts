@@ -12,4 +12,6 @@ contextBridge.exposeInMainWorld("api", {
   startSteam: (root: string) => ipcRenderer.invoke("start-steam", root),
   getSettings: () => ipcRenderer.invoke("get-settings"),
   saveSettings: (settings: { launchMode: string }) => ipcRenderer.invoke("save-settings", settings),
+  hideWindow: () => ipcRenderer.invoke("hide-window"),
+  openTelegram: () => ipcRenderer.invoke("open-telegram"),
 });

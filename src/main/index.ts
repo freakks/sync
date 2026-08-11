@@ -1,7 +1,7 @@
 import { app, BrowserWindow, ipcMain, screen, shell } from "electron";
 import { join } from "path";
 import { existsSync, readdirSync, readFileSync, writeFileSync, cpSync, rmSync } from "fs";
-import { execSync, exec } from "child_process";
+import { execSync } from "child_process";
 
 const STEAM64_BASE = 76561197960265728n;
 const DEFAULT_USERDATA = join(
@@ -113,19 +113,22 @@ function copyFolder(src: string, dst: string): { ok: boolean; error?: string } {
   }
 }
 
+let mainWindow: BrowserWindow | null = null;
+
 function createWindow(): BrowserWindow {
-  const { width: sw, height: sh } = screen.getPrimaryDisplay().workAreaSize;
-  const w = Math.round(sw * 0.5);
-  const h = Math.round(sh * 0.72);
+  const { width: sw, height: sh } = screen.getPrimaryDisplay().bounds;
+  const w = Math.round(sw);
+  const h = Math.round(sh);
 
   const win = new BrowserWindow({
     width: w,
     height: h,
-    minWidth: 560,
-    minHeight: 600,
-    x: Math.round((sw - w) / 2),
-    y: Math.round((sh - h) / 2),
-    resizable: true,
+    x: 0,
+    y: 0,
+    resizable: false,
+    movable: false,
+    maximizable: false,
+    fullscreenable: false,
     frame: false,
     backgroundColor: "#080808",
     webPreferences: {
@@ -151,6 +154,7 @@ function createWindow(): BrowserWindow {
     win.loadFile(join(__dirname, "../renderer/index.html"));
   }
 
+  mainWindow = win;
   return win;
 }
 
@@ -219,3 +223,5 @@ ipcMain.handle("kill-steam", () => killSteam());
 ipcMain.handle("start-steam", (_e, root: string) => startSteam(root));
 ipcMain.handle("get-settings", () => readSettings());
 ipcMain.handle("save-settings", (_e, settings) => writeSettings(settings));
+ipcMain.handle("hide-window", () => mainWindow?.minimize());
+ipcMain.handle("open-telegram", () => shell.openExternal("https://t.me/steamsync"));

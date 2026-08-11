@@ -13,5 +13,7 @@ interface Window {
     startSteam: (root: string) => Promise<boolean>;
     getSettings: () => Promise<{ launchMode?: string }>;
     saveSettings: (settings: { launchMode: string }) => Promise<void>;
+    hideWindow: () => Promise<void>;
+    openTelegram: () => Promise<void>;
   };
 }
